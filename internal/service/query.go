@@ -18,9 +18,6 @@ func (s *QueryService) OperationalSummary(ctx context.Context) (repository.Opera
 	err := s.store.Read(ctx, func(reader repository.Reader) error {
 		var err error
 		summary, err = reader.GetOperationalSummary(ctx)
-		if err == nil {
-			summary = summary.StableSnapshot()
-		}
 		return err
 	})
 	return summary, err
