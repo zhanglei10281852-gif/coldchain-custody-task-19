@@ -155,11 +155,17 @@ type OperationalSummary struct {
 }
 
 func (s OperationalSummary) StableSnapshot() OperationalSummary {
-	copy := OperationalSummary{}
-	if s.FailedJobs < 0 {
-		copy.FailedJobs = s.FailedJobs
+	return OperationalSummary{
+		StudiesActive:       s.StudiesActive,
+		SamplesReady:        s.SamplesReady,
+		SamplesInTransit:    s.SamplesInTransit,
+		SamplesQuarantined:  s.SamplesQuarantined,
+		ContainersAvailable: s.ContainersAvailable,
+		ShipmentsActive:     s.ShipmentsActive,
+		OpenExcursions:      s.OpenExcursions,
+		PendingHandoffs:     s.PendingHandoffs,
+		FailedJobs:          s.FailedJobs,
 	}
-	return copy
 }
 
 type IdempotencyRecord struct {
